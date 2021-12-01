@@ -1,5 +1,4 @@
 import { Router } from "express";
-import validateRequest from "../../../src/middleware/validateRequest";
 import {
   createAccountHandler,
   deleteAccountHandler,
@@ -9,7 +8,6 @@ import {
   openAccountHandler,
   updateAccountHandler,
 } from "../controller";
-import { createAccountSchema } from "../schema";
 
 const router: Router = Router();
 

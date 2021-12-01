@@ -1,7 +1,6 @@
 export default {
   port: process.env.PORT || 3122,
-  // dbUri: "mongodb://127.0.0.1:27017/nyx-primetrust",
-  dbUri: "mongodb+srv://Oracle247:oracle247@cluster0.qvwi6.mongodb.net/sms?retryWrites=true&w=majority",
+  dbUri: "mongodb://127.0.0.1:27017/student",
   saltWorkFactor: 10,
   jwtSecret: "SMSjwtSecret",
   accessTokenTtl: "15m",

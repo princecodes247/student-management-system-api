@@ -1,5 +1,4 @@
-import { Schema } from "mongoose";
-import mongoose from 'mongoose';
+import { Schema, model } from "mongoose";
 import { UserDocument } from '../type';
 
 const UserSchema = new Schema({
@@ -7,4 +6,4 @@ const UserSchema = new Schema({
     deletedAt: { type: Date, default: Date.now() }
 }, { timestamps: true })
 
-export const UserModel = mongoose.model<UserDocument>('User', UserSchema)
+export const UserModel = model<UserDocument>('User', UserSchema)

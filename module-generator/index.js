@@ -1,7 +1,5 @@
-var fs = require('fs').promises;
+const fs = require('fs').promises;
 
-
-// console.log(process.argv.slice(2))
 
 const moduleName = process.argv.slice(2)?.toString().toLowerCase()
 
@@ -10,7 +8,6 @@ const parentFolder = "src"
 const subDirectories = ["model", 'controller', 'service', 'schema', 'route', 'middleware', 'util', 'type']
 
 const createFolder = async (dir) => {
-    // if (!await fs.existsSync(dir)) {
     await fs.mkdir(dir, {
         recursive: true
     });
@@ -38,8 +35,8 @@ subDirectories.forEach(async dirP => {
         const studFile = `${__dirname}/studs/module/${dirP}/index.ts`
         const fileContent = await getFileContent(studFile)
         const replacedFiles = fileContent
-            .replace(new RegExp(`User`, "g"), capitalizeFirstLetter(moduleName))
-            .replace(new RegExp(`user`, "g"), moduleName)
+            .replace(/User/g, capitalizeFirstLetter(moduleName))
+            .replace(/User/g, moduleName)
         await createFileWithContent(`${dirName}/index.ts`, replacedFiles)
     } catch (error) {
         console.error(error.stack)

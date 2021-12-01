@@ -1,8 +1,7 @@
-import { Schema } from "mongoose";
 import mongoose from "mongoose";
 import { AccountDocument } from "../type";
 
-const AccountSchema = new Schema(
+const AccountSchema = new mongoose.Schema(
   {
     account_id: { type: String, required: true, unique: true },
     attributes: {
