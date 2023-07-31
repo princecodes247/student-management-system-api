@@ -17,4 +17,4 @@ This is a simple API for a student management system. It allows you to create, r
 - [ ] Department
 - [ ] Course
 - [ ] Result
-- [ ]
+- [ ] TimeTable
