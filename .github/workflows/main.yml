@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: MORIZON UPDATE
+
+env:
+  FILE_PATH: /home/ubuntu/projects/nyxex-primetrust-gateway
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # # Export enviromental variables
+      # - name: Export Env Variabled
+      #   run: export PM2_HOME="/home/mrbarnk/.pm2"
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Copying files to Folder
+        run: cp -rf ./* $FILE_PATH
+      #  && cp .env.development.local ./dist/.env.production.local
+      - name: STOP server and Copy Files
+        run: cd $FILE_PATH && npm i && export PM2_HOME="/home/ubuntu/.pm2" && npm run build && pm2 stop ecosystem.config.js && export PM2_HOME="/home/ubuntu/.pm2" && pm2 reload ecosystem.config.js --env production
+      - name: Work Done
+        run: echo Work Done! Nice

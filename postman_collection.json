@@ -1,0 +1,1131 @@
+{
+  "info": {
+    "_postman_id": "9b0b36e1-0063-499e-a6bb-6d282fafb8fb",
+    "name": "Demo API doc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7357326"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/user",
+              "host": ["{{endpoint}}"],
+              "path": ["user"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/user",
+                  "host": ["{{endpoint}}"],
+                  "path": ["user"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "165"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a5-lndasSqM0uCVGQ/BqHyDPmoosZM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:31:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"email\": \"test@example.com\",\n    \"name\": \"Jane Doe\",\n    \"_id\": \"63ba1cf6d0517de3f1a652fd\",\n    \"createdAt\": \"2023-01-08T01:31:34.423Z\",\n    \"updatedAt\": \"2023-01-08T01:31:34.423Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Session",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "console.log(jsonData)",
+                  "postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+                  "postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/session",
+              "host": ["{{endpoint}}"],
+              "path": ["session"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Session",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/session",
+                  "host": ["{{endpoint}}"],
+                  "path": ["session"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1084"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"43c-ErWXQZ2dhh9e5JLmrfNHKkFEm+E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:32:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2JhMWNmNmQwNTE3ZGUzZjFhNjUyZmQiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJuYW1lIjoiSmFuZSBEb2UiLCJjcmVhdGVkQXQiOiIyMDIzLTAxLTA4VDAxOjMxOjM0LjQyM1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTAxLTA4VDAxOjMxOjM0LjQyM1oiLCJfX3YiOjAsInNlc3Npb24iOiI2M2JhMWQyYjI1ZjE0YTllMWE0ZjdkYjIiLCJpYXQiOjE2NzMxNDE1NDcsImV4cCI6MTY3MzE0MjQ0N30.UDJCfNIMCcmvv08ro4tfPifccwN28WQSX_250oTzszQsvtqegRS62e9JFMJ3TGEYGGFj3sIoFUkdORD8qAL1dPJfdAhP5FQgXqpV8o7JYO-zUoDndEPxHGyGO8NP95pRR-K3-7sJSzrdTfXLw4MweHbuQ2B-673CUNgyveC5EDI\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2JhMWNmNmQwNTE3ZGUzZjFhNjUyZmQiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJuYW1lIjoiSmFuZSBEb2UiLCJjcmVhdGVkQXQiOiIyMDIzLTAxLTA4VDAxOjMxOjM0LjQyM1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTAxLTA4VDAxOjMxOjM0LjQyM1oiLCJfX3YiOjAsInNlc3Npb24iOiI2M2JhMWQyYjI1ZjE0YTllMWE0ZjdkYjIiLCJpYXQiOjE2NzMxNDE1NDcsImV4cCI6MTcwNDY5OTE0N30.dp6ai9-AbF8hLVClV_PipL25B9quJlsJ26g4RTLOnHPG9KNoZGF-088_RvdSYnmkJXjixORvTQlNabo3UOw7kYv6DQwoht6Cmg_Ez4xoGYc_KnLPwmdwMNtnX-t8NIsSznDLr-Hvi21nCD2x11vmlZhcWoufQg1sNNcaHSdcTCs\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Sessions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "",
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{endpoint}}/session",
+              "host": ["{{endpoint}}"],
+              "path": ["session"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Sessions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-refresh",
+                    "value": "{{refreshToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{endpoint}}/session",
+                  "host": ["{{endpoint}}"],
+                  "path": ["session"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "205"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cd-32vkbiqhQQuQ+eOdWXVy9k3u5zs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:33:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"_id\": \"63ba1d2b25f14a9e1a4f7db2\",\n        \"user\": \"63ba1cf6d0517de3f1a652fd\",\n        \"valid\": true,\n        \"userAgent\": \"PostmanRuntime/7.29.2\",\n        \"createdAt\": \"2023-01-08T01:32:27.436Z\",\n        \"updatedAt\": \"2023-01-08T01:32:27.436Z\",\n        \"__v\": 0\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Delete Session",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{endpoint}}/session",
+              "host": ["{{endpoint}}"],
+              "path": ["session"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "Create Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"productId\", jsonData.productId);",
+                  "",
+                  "",
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\",\n    \"price\": 879.99,\n    \"image\": \"https://i.imgur.com/QlRphfQ.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/products",
+              "host": ["{{endpoint}}"],
+              "path": ["products"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Product",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-refresh",
+                    "value": "{{refreshToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\",\n    \"price\": 879.99,\n    \"image\": \"https://i.imgur.com/QlRphfQ.jpg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/products",
+                  "host": ["{{endpoint}}"],
+                  "path": ["products"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "637"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"27d-dI1/rdPmEuc/FGy7H7HOZq9frKg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:33:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": \"63ba1cf6d0517de3f1a652fd\",\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\",\n    \"price\": 879.99,\n    \"image\": \"https://i.imgur.com/QlRphfQ.jpg\",\n    \"_id\": \"63ba1d75c2d91fbe51cdc26e\",\n    \"productId\": \"product_d7wyj1rbxu\",\n    \"createdAt\": \"2023-01-08T01:33:41.865Z\",\n    \"updatedAt\": \"2023-01-08T01:33:41.865Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/products/63ba1d75c2d91fbe51cdc26e",
+              "host": ["{{endpoint}}"],
+              "path": ["products", "63ba1d75c2d91fbe51cdc26e"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Canon EOS 1500D DSLR Camera with 18-55mm Lens\",\n    \"description\": \"Designed for first-time DSLR owners who want impressive results straight out of the box, capture those magic moments no matter your level with the EOS 1500D. With easy to use automatic shooting modes, large 24.1 MP sensor, Canon Camera Connect app integration and built-in feature guide, EOS 1500D is always ready to go.\",\n    \"price\": 699.99,\n    \"image\": \"https://i.imgur.com/QlRphfQ.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/api/products/{{productId}}",
+              "host": ["{{endpoint}}"],
+              "path": ["api", "products", "{{productId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/api/products/{{productId}}",
+              "host": ["{{endpoint}}"],
+              "path": ["api", "products", "{{productId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"productId\", jsonData.productId);",
+                  "",
+                  "",
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Default name\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/account",
+              "host": ["{{endpoint}}"],
+              "path": ["account"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-refresh",
+                    "value": "{{refreshToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Default name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/account",
+                  "host": ["{{endpoint}}"],
+                  "path": ["account"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "181"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b5-d8cC6tHBXE3fhe8dPx1SH5+yfRo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:35:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"Default name\",\n    \"deletedAt\": \"2023-01-08T01:33:02.128Z\",\n    \"_id\": \"63ba1dcac2d91fbe51cdc272\",\n    \"createdAt\": \"2023-01-08T01:35:06.768Z\",\n    \"updatedAt\": \"2023-01-08T01:35:06.768Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get SIngle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+              "host": ["{{endpoint}}"],
+              "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Product",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+                  "host": ["{{endpoint}}"],
+                  "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "181"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b5-ezQKtchp8zvixPI6iYpZprE32jY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:35:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": \"63ba1dcac2d91fbe51cdc272\",\n    \"name\": \"Default name\",\n    \"deletedAt\": \"2023-01-08T01:33:02.128Z\",\n    \"createdAt\": \"2023-01-08T01:35:06.768Z\",\n    \"updatedAt\": \"2023-01-08T01:35:06.768Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Single",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Name\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+              "host": ["{{endpoint}}"],
+              "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Single",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "x-refresh",
+                    "value": "{{refreshToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Updated Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+                  "host": ["{{endpoint}}"],
+                  "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "181"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b5-Pi4uheIc9TriUtvkJgab9WpYNzs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:36:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": \"63ba1dcac2d91fbe51cdc272\",\n    \"name\": \"Updated Name\",\n    \"deletedAt\": \"2023-01-08T01:33:02.128Z\",\n    \"createdAt\": \"2023-01-08T01:35:06.768Z\",\n    \"updatedAt\": \"2023-01-08T01:36:22.063Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newAccessToken = responseHeaders['x-access-token']",
+                  "",
+                  "if(newAccessToken){",
+                  "    console.log('Set new access token')",
+                  "postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-refresh",
+                "value": "{{refreshToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+              "host": ["{{endpoint}}"],
+              "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Product",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "x-refresh",
+                    "value": "{{refreshToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{endpoint}}/account/63ba1dcac2d91fbe51cdc272",
+                  "host": ["{{endpoint}}"],
+                  "path": ["account", "63ba1dcac2d91fbe51cdc272"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "18"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"12-uqqlHE4Wm7LBRtOIBZ9EyD8JjQM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 08 Jan 2023 01:37:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"deletedCount\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Metrics",
+      "item": [
+        {
+          "name": "Get metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9100/metrics",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9100",
+              "path": ["metrics"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "email",
+      "value": "test@example.com"
+    },
+    {
+      "key": "password",
+      "value": "Password456!"
+    },
+    {
+      "key": "name",
+      "value": "Jane Doe"
+    },
+    {
+      "key": "accessToken",
+      "value": "<accessToken will be set when you create a session>"
+    },
+    {
+      "key": "refreshToken",
+      "value": "<refreshToken will be set when you create a session>"
+    },
+    {
+      "key": "endpoint",
+      "value": "http://localhost:1337"
+    },
+    {
+      "key": "productId",
+      "value": "<productId will be set when you create a session>"
+    }
+  ]
+}
