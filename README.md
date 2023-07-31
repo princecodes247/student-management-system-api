@@ -1,29 +1,20 @@
-# Typescript Express Boilerplate
+# Student Management System (SMS) API
 
-### How to generate modules
-run `npm run module modulename` to generate complete folder structions with predefined contents to work with.
+## Description
 
-for example, `npm run module biskit` will generate these folders and files.
+This is a simple API for a student management system. It allows you to create, read, update and delete students and courses.
 
-   `src/biskit/controller/index.ts`
-   
-   `src/biskit/model/index.ts`
-   
-   `src/biskit/service/index.ts`
-   
-   `src/biskit/route/index.ts`
-   
-   `src/biskit/schema/index.ts`
-   
-   `src/biskit/type/index.ts`
+## TODO
 
-These are just template you can use and edit by yourself.
+- [ ] Create a student
+- [ ] Generate a student matriculation number
+- [ ] Check student result
 
-Once those are generated, you can add the interface you want at `type/index.ts`
+## Schemas
 
-After completion of your app, remember to register the routes to the `src/routes.ts` folder. By just importing and including them manually. You will see other examples there.
-
-## Postman documentation
-You can find the post man collection at `postman_collection.json`
-
-`Thanks!`
+- [ ] User (Admin, Lecturer, Student)
+- [ ] Faculty
+- [ ] Department
+- [ ] Course
+- [ ] Result
+- [ ]
