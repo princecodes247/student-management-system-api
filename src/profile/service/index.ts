@@ -1,89 +1,100 @@
-import { KYCModel } from "../model";
-import { IKYC } from "../type";
+import { ProfileModel } from "../model";
+import { FilterQuery } from "mongoose";
+import { IProfile, IProfileInput, ProfileDocumentStatus } from "../type";
 import { omit } from "lodash";
 import { createReadStream } from "fs";
 
-export const getCIPChecksService = async (contactID: string) => {
-  return await getCIPChecks(contactID);
-};
-
-export const getAMLChecksService = async (contactID: string) => {
-  return await getCIPChecks(contactID);
-};
-
-export const submitCIPService = async (id: string) => {
+/**
+ * Write a Profile to database.
+ * @param input
+ * @returns ProfileDocument
+ */
+export const uploadDocumentService = async (input: IProfileInput) => {
+  // return await ProfileModel.create(input)
   try {
-    const { data: account } = await submitCIP(id);
-    if (account) {
-      console.log("opened account", account);
-      const updatedKYC = await KYCModel.findOneAndUpdate(
-        { account_id: id },
-        {
-          $set: {
-            status: account.data.status,
-            "disbursements-frozen": account.data["disbursements-frozen"],
-          },
-        }
-      );
-      console.log(updatedKYC);
-      return { account };
+    const Profile = await ProfileModel.findOne({
+      user_id: input.user_id,
+    });
+    if (!Profile) {
+      const newInput: IProfile = {
+        user_id: input.user_id,
+        olevel_result: {
+          name: input.olevel_result,
+          status: ProfileDocumentStatus.PENDING,
+        },
+        birth_certificate: {
+          name: input.birth_certificate,
+          status: ProfileDocumentStatus.PENDING,
+        },
+        statutory_declaration: {
+          name: input.statutory_declaration,
+          status: ProfileDocumentStatus.PENDING,
+        },
+        jamb_result: {
+          name: input.jamb_result,
+          status: ProfileDocumentStatus.PENDING,
+        },
+        attestation_letter: {
+          name: input.attestation_letter,
+          status: ProfileDocumentStatus.PENDING,
+        },
+      };
+
+      const newProfile = await ProfileModel.create(newInput);
+      console.log(newProfile);
+      return { Profile: newProfile };
     } else {
-      console.log("KYC not opened");
-      throw new Error("KYC not opened");
+      console.log("Profile already exists");
+      throw new Error("Profile already exists");
       // return false;
     }
   } catch (e: any) {
-    console.log("e", e.response.data);
-    throw new Error(e.response.data);
-  }
-};
-export const approveCIPCheckService = async (id: string) => {
-  try {
-    const { data: account } = await approveCIPCheckSandbox(id);
-    if (account) {
-      console.log("opened account", account);
-      return { account };
-    } else {
-      console.log("KYC not opened");
-      throw new Error("KYC not opened");
-      // return false;
-    }
-  } catch (e: any) {
-    console.log("e", e.response.data);
-    throw new Error(e.response.data);
-  }
-};
-export const approveAMLCheckService = async (id: string) => {
-  try {
-    const { data: account } = await approveAMLCheckSandbox(id);
-    if (account) {
-      console.log("opened account", account);
-      return { account };
-    } else {
-      console.log("KYC not opened");
-      throw new Error("KYC not opened");
-      // return false;
-    }
-  } catch (e: any) {
-    console.log("e", e.response.data);
-    throw new Error(e.response.data);
+    console.log("error: ", e);
+    throw e;
   }
 };
 
-// approveAMLSandbox;
+/**
+ * Find single Profile object from database.
+ * @param query FilterQuery<IProfile>
+ * @returns ProfileDocument
+ */
+export const findOneProfile = async (id: string) => {
+  const data = await ProfileModel.findOne({
+    user_id: id
+  });
+  console.log(data);
+  return data;
+};
 
-export const uploadDocumentService = async (
-  label: string,
-  file: any,
-  contactId: string
+/**
+ * Find many Profile objects from database.
+ * @param query FilterQuery<IProfile>
+ * @returns ProfileDocument[]
+ */
+export const findManyProfiles = async (query: FilterQuery<IProfile>) => {
+  return await ProfileModel.find(query);
+};
+
+/**
+ * Update single Profile in database..
+ * @param query FilterQuery<IProfile>
+ * @param update IProfile
+ * @returns ProfileDocument
+ */
+export const updateProfileService = async (
+  query: FilterQuery<IProfile>,
+  update: IProfile
 ) => {
-  // Read file content
-  const fileContent = createReadStream(file.path);
-  return await uploadDocument({ label, file: fileContent, contactId });
+  // const { data } = await updateProfile("query", update);
+  return await ProfileModel.findOneAndUpdate(query, { $set: update });
 };
 
-export const documentChecksService = async (id: string) => {
-  // Read file content
-  // const fileContent = readFileSync(file.path);
-  // return await initiateKycDocumentCheck();
+/**
+ * It deletes an Profile from the database
+ * @param query - FilterQuery<IProfile>
+ * @returns The return value of the function is the Profile of the deleteOne() method.
+ */
+export const deleteProfile = async (query: FilterQuery<IProfile>) => {
+  return await ProfileModel.deleteOne(query);
 };

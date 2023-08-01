@@ -1,35 +1,52 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
-import { KYCDocument } from "../type";
+import { ProfileDocument, ProfileDocumentStatus } from "../type";
 
-const KYCSchema = new Schema(
+const ProfileSchema = new Schema<ProfileDocument>(
   {
-    account_id: { type: String, required: true, unique: true },
-    attributes: {
+    user_id: { type: Schema.Types.ObjectId, ref: "User" },
+    olevel_result: {
       name: { type: String, required: true },
-      //   email: { type: String, required: true },
-      number: { type: String, required: true },
-      "contributions-frozen": { type: Boolean, default: true },
-      "disbursements-frozen": { type: Boolean, default: true },
-      "organization-label": { type: String, required: true },
-      statements: { type: Boolean, default: true },
-      status: { type: String, enum: ["pending", "opened", "closed"] },
-      "solid-freeze": { type: Boolean, default: true },
-      "offline-cold-storage": { type: String, required: false },
-      "freeze-required-actions": { type: Array, default: [] },
-      "freeze-not-required-actions": { type: Array, default: [] },
-      "uploaded-document-ids": { type: Array, default: [] },
+      status: {
+        type: String,
+        enum: Object.values(ProfileDocumentStatus),
+        default: ProfileDocumentStatus.PENDING,
+      },
     },
-    relationships: {
-      type: Object,
-      default: {},
+    birth_certificate: {
+      name: { type: String, required: true },
+      status: {
+        type: String,
+        enum: Object.values(ProfileDocumentStatus),
+        default: ProfileDocumentStatus.PENDING,
+      },
     },
-    links: {
-      type: Object,
-      default: {},
+    statutory_declaration: {
+      name: { type: String, required: true },
+      status: {
+        type: String,
+        enum: Object.values(ProfileDocumentStatus),
+        default: ProfileDocumentStatus.PENDING,
+      },
+    },
+    jamb_result: {
+      name: { type: String, required: true },
+      status: {
+        type: String,
+        enum: Object.values(ProfileDocumentStatus),
+        default: ProfileDocumentStatus.PENDING,
+      },
+    },
+    attestation_letter: {
+      name: { type: String, required: true },
+      status: {
+        type: String,
+        enum: Object.values(ProfileDocumentStatus),
+        default: ProfileDocumentStatus.PENDING,
+      },
     },
   },
   { timestamps: true }
 );
 
-export const KYCModel = mongoose.model<KYCDocument>("KYC", KYCSchema);
+export const ProfileModel = mongoose.model<ProfileDocument>("Profile", ProfileSchema);
