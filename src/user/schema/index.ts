@@ -1,4 +1,4 @@
-import z, { object, string, TypeOf } from "zod";
+import { z, object, string, TypeOf } from "zod";
 import { UserRole, UserType } from "../type/user.type";
 
 export const createUserSchema = object({
