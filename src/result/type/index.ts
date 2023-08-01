@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Semester } from "../../schoolSession/type";
 
 export interface IResult {
   user: mongoose.Types.ObjectId;
@@ -16,9 +17,4 @@ export interface ICourseScore {
   course: mongoose.Types.ObjectId;
   score: number;
   points: number;
-}
-
-export enum Semester {
-  first = "first",
-  second = "second",
 }
