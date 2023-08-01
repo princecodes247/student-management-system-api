@@ -58,4 +58,4 @@ router.post(
   documentChecksHandler
 );
 
-export const KYCRoutes = router;
+export const ProfileRoutes = router;

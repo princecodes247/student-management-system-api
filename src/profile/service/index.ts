@@ -1,15 +1,6 @@
 import { KYCModel } from "../model";
 import { IKYC } from "../type";
 import { omit } from "lodash";
-import {
-  approveAMLCheckSandbox,
-  approveCIPCheckSandbox,
-  getCIPCheck,
-  getCIPChecks,
-  initiateKycDocumentCheck,
-  submitCIP,
-  uploadDocument,
-} from "../../utils/prime-trust/kyc";
 import { createReadStream } from "fs";
 
 export const getCIPChecksService = async (contactID: string) => {
