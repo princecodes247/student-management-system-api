@@ -6,6 +6,7 @@ import { AuthRoutes } from "./auth/route";
 
 import { KYCRoutes } from "./kyc/route";
 import { AssetsRoutes } from "./assets/route";
+import { CourseRoutes } from "./course/route";
 import { ResultRoutes } from "./result/route";
 import { TradesRoutes } from "./trades/route/index";
 
@@ -14,6 +15,7 @@ const router: Router = Router();
 // Add more routes here
 router.use("/account", AccountRoutes);
 router.use("/assets", AssetsRoutes);
+router.use("/course", CourseRoutes);
 // router.use("/agreement-previews", AgreementPreviewsRoutes);
 // router.use("/contacts", ContactRoutes);
 router.use("/kyc", KYCRoutes);
