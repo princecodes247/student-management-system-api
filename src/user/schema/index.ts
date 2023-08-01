@@ -16,7 +16,9 @@ export const createUserSchema = object({
     passwordConfirmation: string({
       required_error: "passwordConfirmation is required",
     }),
-    enrollmentSession: z.number().optional(),
+    enrollmentSession: z.string({
+      required_error: "Enrollment session is required",
+    }),
     email: string({
       required_error: "Email is required",
     }).email("Not a valid email"),

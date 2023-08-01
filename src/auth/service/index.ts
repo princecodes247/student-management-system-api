@@ -16,15 +16,8 @@ export async function createUser(input: UserInput) {
   } catch (e: any) {
     // console.log("e", e);
 
-    console.log("e", e.response.data);
-    console.log("source", e.response.data.errors[0].source);
-    if (e.response) {
-      throw new Error(
-        e.response.data.errors[0]?.source?.pointer +
-          ": " +
-          e.response.data.errors[0].detail
-      );
-    }
+    console.log("e", e);
+
     throw new Error(e);
   }
 }

@@ -5,6 +5,7 @@ function generateMatricNumber(
   session: number,
   studentCount: number | null // Allow studentCount to be nullable
 ): string {
+  let targetSession: number = session;
   // Function to generate a random four-digit number
   function generateRandomFourDigits() {
     return Math.floor(1000 + Math.random() * 9000);
@@ -21,13 +22,16 @@ function generateMatricNumber(
 
   // Check if the session is within a valid range (currentSession - 1) to (currentSession + 1)
   if (session < currentSession - 1 || session > currentSession + 1) {
-    throw new Error(
-      "Invalid session. It should be the current year or the two previous/following years."
-    );
+    // throw new Error(
+    //   "Invalid session. It should be the current year or the two previous/following years."
+    // );
+    targetSession = new Date().getFullYear() % 100;
+    console.log({ targetSession });
   }
 
   // Determine the year part of the matric number
-  const yearPart = currentYear - session + 1;
+  // const yearPart = currentYear - targetSession + 1;
+  const yearPart = targetSession;
 
   // Generate a four-digit number using studentCount + 1 or fallback to generateRandomFourDigits()
   const uniqueNumber =
