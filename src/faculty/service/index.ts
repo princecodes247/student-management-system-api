@@ -11,11 +11,11 @@ import { IFaculty } from "../type";
 export const createFacultyService = async (input: IFaculty) => {
   // return await FacultyModel.create(input)
   try {
-    const Faculty = await FacultyModel.findOne({
-      faculty_name: input.faculty_name,
+    const faculty = await FacultyModel.findOne({
+      name: input.name,
     });
-    if (!Faculty) {
-      console.log({ Faculty });
+    if (!faculty) {
+      console.log({ faculty });
       const newFaculty = await FacultyModel.create(input);
       console.log(newFaculty);
       return { Faculty: newFaculty };

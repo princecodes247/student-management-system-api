@@ -8,6 +8,7 @@ const CourseSchema = new Schema(
     title: { type: String, required: true },
     unit: { type: Number, required: true },
     description: { type: String, required: true },
+    department: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
   },
   { timestamps: true }
 );

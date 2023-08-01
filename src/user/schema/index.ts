@@ -19,6 +19,9 @@ export const createUserSchema = object({
     enrollmentSession: z.string({
       required_error: "Enrollment session is required",
     }),
+    department: z.string({
+      required_error: "Department is required",
+    }),
     email: string({
       required_error: "Email is required",
     }).email("Not a valid email"),

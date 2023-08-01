@@ -4,7 +4,7 @@ import { FacultyDocument } from "../type";
 
 const FacultySchema = new Schema<FacultyDocument>(
   {
-    faculty_name: { type: String, required: true, unique: true },
+    name: { type: String, required: true, unique: true },
   },
   { timestamps: true }
 );

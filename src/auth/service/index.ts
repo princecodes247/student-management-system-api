@@ -10,13 +10,44 @@ export async function createUser(input: UserInput) {
       return omit(user.toJSON(), "password");
     } else {
       console.log("User not created");
-      throw new Error("User not created");
+      throw new Error("User not created: Email already exists");
       // return false;
     }
   } catch (e: any) {
     // console.log("e", e);
 
     console.log("e", e);
+
+    throw new Error(e);
+  }
+}
+
+export async function login({
+  matriculationNumber,
+  password,
+}: {
+  matriculationNumber: string;
+  password: string;
+}) {
+  try {
+    if (!matriculationNumber) throw new Error("Email is required");
+    if (!password) throw new Error("Password is required");
+
+    const user = await UserModel.findOne({ matriculationNumber });
+    if (!user) throw new Error("Invalid matriculationNumber or password");
+
+    const isValid = await user.comparePassword(password);
+    if (!isValid) throw new Error("Invalid Email or Password");
+
+    const token = await user.generateJWT();
+
+    return {
+      _id: user._id,
+      matriculationNumber: user.matriculationNumber,
+      token: token,
+    };
+  } catch (e: any) {
+    // console.log("e", e);
 
     throw new Error(e);
   }

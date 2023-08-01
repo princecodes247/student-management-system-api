@@ -12,7 +12,8 @@ export const createDepartmentService = async (input: IDepartment) => {
   // return await DepartmentModel.create(input)
   try {
     const Department = await DepartmentModel.findOne({
-      department_name: input.department_name,
+      name: input.name,
+      faculty: input.faculty,
     });
     if (!Department) {
       console.log({ Department });

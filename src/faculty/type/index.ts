@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export interface IFaculty {
-  faculty_name: string;
+  name: string;
 }
 
 export interface FacultyDocument extends IFaculty {

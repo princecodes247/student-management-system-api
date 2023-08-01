@@ -8,14 +8,16 @@ import {
   UserTypeWithAdmin,
 } from "../type/user.type";
 import generateMatricNumber from "../../utils/generateMatricNum";
+import jwt from "jsonwebtoken";
 
 export interface UserInput {
   email: string;
   first_name: string;
   last_name: string;
   password: string;
+  department: string;
   role: UserRoleWithAdmin | UserRole;
-  enrollmentSession?: number;
+  enrollmentSession?: number | string;
   type: UserTypeWithAdmin | UserType;
 }
 
@@ -24,6 +26,7 @@ export interface UserDocument extends UserInput, mongoose.Document {
   updatedAt: Date;
   matriculationNumber: string;
   comparePassword(candidatePassword: string): Promise<Boolean>;
+  generateJWT(): Promise<string>;
 }
 
 const userSchema = new mongoose.Schema(
@@ -32,6 +35,7 @@ const userSchema = new mongoose.Schema(
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     password: { type: String, required: true },
+    department: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
     role: {
       type: String,
       enum: Object.values(UserRoleWithAdmin),
@@ -75,7 +79,7 @@ userSchema.pre("save", async function (next) {
   // Generate the matric number
   user.matriculationNumber = generateMatricNumber(
     type,
-    enrollmentSession ?? 0,
+    (enrollmentSession ?? 0) as number,
     studentCount
   );
 
@@ -90,6 +94,20 @@ userSchema.methods.comparePassword = async function (
   const user = this as UserDocument;
 
   return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
+};
+
+userSchema.methods.generateJWT = async function () {
+  const user = this as UserDocument;
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 1);
+  return jwt.sign(
+    {
+      _id: user._id,
+      email: user.email,
+    },
+    config.get<string>("jwtSecret"),
+    { expiresIn: 60 * 60 }
+  );
 };
 
 const UserModel = mongoose.model<UserDocument>("User", userSchema);

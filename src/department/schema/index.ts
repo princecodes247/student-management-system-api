@@ -2,7 +2,11 @@ import { boolean, number, object, string } from "zod";
 
 export const createDepartmentSchema = object({
   body: object({
-    department_name: string(),
-    faculty_id: string(),
+    name: string({
+      required_error: "Department name is required",
+    }),
+    faculty: string({
+      required_error: "Faculty ID is required",
+    }),
   }),
 });
