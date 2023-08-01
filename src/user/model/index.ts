@@ -34,15 +34,21 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ["student", "teacher", "admin"],
-      default: "student",
+      enum: Object.values(UserRoleWithAdmin),
+      default: UserRoleWithAdmin.Student,
     },
-    matriculationNumber: { type: String, required: true, unique: true },
-    enrollmentSession: { type: Number, required: true },
+    matriculationNumber: { type: String, unique: true },
+    // enrollmentSession: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "SchoolSession",
+    // },
+    enrollmentSession: {
+      type: String,
+    },
     type: {
       type: String,
-      enum: ["undergraduate", "postgraduate"],
-      default: "undergraduate",
+      enum: Object.values(UserTypeWithAdmin),
+      default: UserTypeWithAdmin.Undergraduate,
     },
   },
   {
