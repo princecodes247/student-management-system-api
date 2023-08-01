@@ -3,12 +3,12 @@ import { AccountRoutes } from "./account/route";
 
 import { UserRoutes } from "./user/route";
 import { AuthRoutes } from "./auth/route";
-
-import { KYCRoutes } from "./kyc/route";
 import { AssetsRoutes } from "./assets/route";
 import { CourseRoutes } from "./course/route";
 import { ResultRoutes } from "./result/route";
-import { TradesRoutes } from "./trades/route/index";
+import { DepartmentRoutes } from "./department/route";
+import { FacultyRoutes } from "./faculty/route";
+import { ProfileRoutes } from "./profile/route";
 
 const router: Router = Router();
 
@@ -16,10 +16,9 @@ const router: Router = Router();
 router.use("/account", AccountRoutes);
 router.use("/assets", AssetsRoutes);
 router.use("/course", CourseRoutes);
-// router.use("/agreement-previews", AgreementPreviewsRoutes);
-// router.use("/contacts", ContactRoutes);
-router.use("/kyc", KYCRoutes);
-router.use("/trades", TradesRoutes);
+router.use("/department", DepartmentRoutes);
+router.use("/faculty", FacultyRoutes);
+router.use("/profile", ProfileRoutes);
 // router.use("/quotes", QuotesRoutes);
 router.use("/result", ResultRoutes);
 router.use("/session", ResultRoutes);

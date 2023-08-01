@@ -9,4 +9,7 @@ const FacultySchema = new Schema<FacultyDocument>(
   { timestamps: true }
 );
 
-export const FacultyModel = mongoose.model<FacultyDocument>("Trade", FacultySchema);
+export const FacultyModel = mongoose.model<FacultyDocument>(
+  "Faculty",
+  FacultySchema
+);
