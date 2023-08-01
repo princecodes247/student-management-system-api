@@ -1,20 +1,12 @@
 import { FilterQuery } from "mongoose";
 import { omit } from "lodash";
-import UserModel, { UserDocument, UserInput } from "../model";
-import {
-  createNewUser,
-  getUser,
-  getUsers,
-} from "../../utils/prime-trust/users";
+import UserModel, { UserDocument, UserInput } from "../../user/model";
 
 export async function createUser(input: UserInput) {
   try {
-    const primeTrustInput = { ...input };
-    delete primeTrustInput.passwordConfirmation;
-    const newUser = await createNewUser(primeTrustInput);
-    console.log("newUser", newUser);
-    if (newUser) {
-      const user = await UserModel.create(primeTrustInput);
+    const userExists = await UserModel.findOne({ email: input.email });
+    if (!userExists) {
+      const user = await UserModel.create(input);
       return omit(user.toJSON(), "password");
     } else {
       console.log("User not created");
@@ -59,12 +51,12 @@ export async function validatePassword({
 
 export async function findUser(id: string) {
   // return UserModel.findOne(query).lean();
-  const users = await getUser(id);
-  return users.data;
+  const user = await UserModel.findById(id).lean();
+  return user;
 }
 
 export async function getAllUsers(query: FilterQuery<UserDocument>) {
   // return UserModel.findOne(query).lean();
-  const users = await getUsers();
-  return users.data;
+  const users = await UserModel.findOne(query).lean();
+  return users;
 }

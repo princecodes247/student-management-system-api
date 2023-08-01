@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { omit } from "lodash";
-import { CreateUserInput } from "../schema";
+import { CreateUserInput } from "../../user/schema";
 import { createUser, findUser, getAllUsers } from "../service";
 import logger from "../../utils/logger";
 
@@ -19,7 +19,7 @@ export async function createUserHandler(
 
 export async function getUsersHandler(req: Request, res: Response) {
   try {
-    const users = await getAllUsers({});
+    const users = await getAllUsers(req.query);
     console.log(users);
     return res.json(users);
   } catch (e: any) {

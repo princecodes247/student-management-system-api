@@ -5,7 +5,7 @@ import {
   getUserHandler,
   getUsersHandler,
 } from "../controller";
-import { createUserSchema } from "../schema";
+import { createUserSchema } from "../../user/schema";
 
 const router: Router = Router();
 
