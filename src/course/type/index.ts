@@ -5,7 +5,7 @@ export interface ICourse {
   code: String;
   title: String;
   description: String;
-  unit: Number;
+  unit: number;
 }
 
 export interface CourseDocument extends ICourse {

@@ -1,24 +1,36 @@
 import { FilterQuery } from "mongoose";
 import { EnrollmentModel } from "../model";
-import { IEnrollment } from "../type";
+import { IEnrollment, IEnrollmentInput } from "../type";
 import { omit } from "lodash";
 import { CreateEnrollmentSchema } from "../schema";
+import { findManyCourses } from "../../course/service";
 
 /**
  * Write a result to database.
  * @param input
  * @returns EnrollmentDocument
  */
-export const createEnrollmentService = async (input: IEnrollment) => {
+export const createEnrollmentService = async (input: IEnrollmentInput) => {
   // return await EnrollmentModel.create(input)
   try {
     const result = await EnrollmentModel.findOne({
       student: input.student,
-      session: input.session,
+      session: input.session + "11",
       semester: input.semester,
     });
     if (!result) {
       console.log({ result });
+      // Check iƒ the sum of the units of the courses is equal to 24
+      const courses = await findManyCourses({
+        _id: { $in: input.courses },
+      });
+      let totalUnits = 0;
+      courses.forEach((course) => {
+        totalUnits += course.unit;
+      });
+      if (totalUnits !== 24) {
+        throw new Error("Total units must be equal to 24");
+      }
       const newEnrollment = await EnrollmentModel.create(input);
       console.log(newEnrollment);
       return { result: newEnrollment };

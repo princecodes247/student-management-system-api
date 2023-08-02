@@ -6,7 +6,7 @@ export const createCourseSchema = z.object({
       required_error: "Course is required",
     }),
     description: z.string().optional(),
-    code: z.number({
+    code: z.string({
       required_error: "Score is required",
     }),
     unit: z.number({

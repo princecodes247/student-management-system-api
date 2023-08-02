@@ -14,6 +14,7 @@ export enum UserTypeWithAdmin {
 export enum UserRole {
   "Student" = "student",
   "Teacher" = "teacher",
+  "Admin" = "admin",
 }
 
 export enum UserRoleWithAdmin {

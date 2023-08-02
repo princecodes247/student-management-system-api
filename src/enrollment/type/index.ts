@@ -9,6 +9,13 @@ export interface IEnrollment {
   courses: ICourse[];
 }
 
+export interface IEnrollmentInput {
+  student: string;
+  session: string;
+  semester: Semester;
+  courses: string[];
+}
+
 export interface EnrollmentDocument extends IEnrollment {
   createdAt: Date;
   updatedAt: Date;

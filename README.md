@@ -27,3 +27,10 @@ This is a simple API for a student management system. It allows you to create, r
 - Every course should have a department
 - Every result should belong a student
 - Every
+
+## Setup
+
+- Create at least one faculty
+- Create at least one department in that faculty
+- Create at least one course in that department
+- Create one session

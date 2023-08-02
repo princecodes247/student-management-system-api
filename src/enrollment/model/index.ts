@@ -1,6 +1,7 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
 import { EnrollmentDocument } from "../type";
+import { Semester } from "../../schoolSession/type";
 
 const EnrollmentSchema = new Schema(
   {
@@ -13,7 +14,12 @@ const EnrollmentSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    semester: { enum: ["first", "second"], type: String, required: true },
+
+    semester: {
+      enum: Object.values(Semester),
+      type: String,
+      default: Semester.first,
+    },
   },
   { timestamps: true }
 );

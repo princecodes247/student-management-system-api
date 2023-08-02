@@ -17,7 +17,7 @@ import { IEnrollment } from "../type";
  * @returns
  */
 export const createEnrollmentHandler = async (
-  req: Request<{}, {}, IEnrollment>,
+  req: Request<{}, {}, CreateEnrollmentSchema["body"]>,
   res: Response
 ) => {
   try {
