@@ -12,37 +12,50 @@ import { createReadStream } from "fs";
 export const uploadDocumentService = async (input: IProfileInput) => {
   // return await ProfileModel.create(input)
   try {
-    const Profile = await ProfileModel.findOne({
+    const newInput: IProfile = {
       user_id: input.user_id,
-    });
-    if (!Profile) {
-      const newInput: IProfile = {
-        user_id: input.user_id,
-        olevel_result: {
-          name: input.olevel_result,
-          status: ProfileDocumentStatus.PENDING,
-        },
-        birth_certificate: {
-          name: input.birth_certificate,
-          status: ProfileDocumentStatus.PENDING,
-        },
-        statutory_declaration: {
-          name: input.statutory_declaration,
-          status: ProfileDocumentStatus.PENDING,
-        },
-        jamb_result: {
-          name: input.jamb_result,
-          status: ProfileDocumentStatus.PENDING,
-        },
-        attestation_letter: {
-          name: input.attestation_letter,
-          status: ProfileDocumentStatus.PENDING,
-        },
-      };
+      olevel_result: {
+        name: input.olevel_result,
+        status: ProfileDocumentStatus.PENDING,
+      },
+      birth_certificate: {
+        name: input.birth_certificate,
+        status: ProfileDocumentStatus.PENDING,
+      },
+      statutory_declaration: {
+        name: input.statutory_declaration,
+        status: ProfileDocumentStatus.PENDING,
+      },
+      jamb_result: {
+        name: input.jamb_result,
+        status: ProfileDocumentStatus.PENDING,
+      },
+      attestation_letter: {
+        name: input.attestation_letter,
+        status: ProfileDocumentStatus.PENDING,
+      },
+    };
+    const profile = await ProfileModel.findOneAndUpdate(
+      {
+        user_id: input.user_id
+      },
+      newInput,
+    );
+  } catch (e: any) {
+    console.log("error: ", e);
+    throw e;
+  }
+};
 
-      const newProfile = await ProfileModel.create(newInput);
+export const createProfile = async (input: string) => {
+  try {
+    const profile = await ProfileModel.findOne({
+      user_id: input,
+    });
+    if (!profile) {
+      const newProfile = await ProfileModel.create(input);
       console.log(newProfile);
-      return { Profile: newProfile };
+      return { profile: newProfile };
     } else {
       console.log("Profile already exists");
       throw new Error("Profile already exists");
@@ -52,7 +65,7 @@ export const uploadDocumentService = async (input: IProfileInput) => {
     console.log("error: ", e);
     throw e;
   }
-};
+}
 
 /**
  * Find single Profile object from database.

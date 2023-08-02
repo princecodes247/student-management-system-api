@@ -21,7 +21,7 @@ export interface UserInput {
   type: UserTypeWithAdmin | UserType;
 }
 
-export interface UserDocument extends UserInput, mongoose.Document {
+export interface UserDocument extends UserInput,  mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
   matriculationNumber: string;
@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
-  let user = this as UserDocument;
+  const user = this as UserDocument;
 
   if (!user.isModified("password")) {
     return next();

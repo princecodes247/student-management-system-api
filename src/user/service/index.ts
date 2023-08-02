@@ -1,10 +1,12 @@
 import { FilterQuery } from "mongoose";
 import { omit } from "lodash";
 import UserModel, { UserDocument, UserInput } from "../model/";
+import { createProfile } from "../../profile/service";
 
 export async function createUser(input: UserInput) {
   try {
     const user = await UserModel.create(input);
+    const profile = await createProfile(user._id);
 
     return omit(user.toJSON(), "password");
   } catch (e: any) {
