@@ -1,20 +1,24 @@
 import { Router } from "express";
 import validateRequest from "../../../src/middleware/validateRequest";
 import {
-  createCourseHandler,
-  deleteCourseHandler,
-  findManyCourseHandler,
-  findOneCourseHandler,
-  updateCourseHandler,
+  createSchoolSessionHandler,
+  deleteSchoolSessionHandler,
+  findManySchoolSessionHandler,
+  findOneSchoolSessionHandler,
+  updateSchoolSessionHandler,
 } from "../controller";
-import { createCourseSchema } from "../schema";
+import { createSchoolSessionSchema } from "../schema";
 
 const router: Router = Router();
 
-router.get("/", findManyCourseHandler);
-router.get("/:id", findOneCourseHandler);
-router.post("/", validateRequest(createCourseSchema), createCourseHandler);
-router.put("/:id", updateCourseHandler);
-router.delete("/:id", deleteCourseHandler);
+router.get("/", findManySchoolSessionHandler);
+router.get("/:id", findOneSchoolSessionHandler);
+router.post(
+  "/",
+  validateRequest(createSchoolSessionSchema),
+  createSchoolSessionHandler
+);
+router.put("/:id", updateSchoolSessionHandler);
+router.delete("/:id", deleteSchoolSessionHandler);
 
-export const CourseRoutes = router;
+export const SchoolSessionRoutes = router;

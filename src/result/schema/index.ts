@@ -1,4 +1,5 @@
-import { ICourseScore, Semester } from "./../type/index";
+import { Semester } from "../../schoolSession/type";
+import { ICourseScore } from "./../type/index";
 import { z } from "zod";
 
 const country = z
