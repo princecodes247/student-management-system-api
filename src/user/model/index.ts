@@ -14,7 +14,7 @@ export interface UserInput {
   email: string;
   first_name: string;
   last_name: string;
-  password: string;
+  // password: string;
   department: string;
   role: UserRoleWithAdmin | UserRole;
   enrollmentSession?: number | string;
@@ -24,6 +24,7 @@ export interface UserInput {
 export interface UserDocument extends UserInput, mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
+  password: string;
   matriculationNumber: string;
   comparePassword(candidatePassword: string): Promise<Boolean>;
   generateJWT(): Promise<string>;

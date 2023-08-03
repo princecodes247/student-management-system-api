@@ -44,6 +44,8 @@ export async function login({
 
     return {
       _id: user._id,
+      first_name: user.first_name,
+      last_name: user.last_name,
       matriculationNumber: user.matriculationNumber,
       token: token,
     };
