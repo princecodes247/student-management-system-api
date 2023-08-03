@@ -52,3 +52,14 @@ export async function getUserHandler(req: Request, res: Response) {
     return res.status(409).send(e.message);
   }
 }
+
+export async function updateUserHandler(req: Request, res: Response) {
+  try {
+    const users = await findUser(req.params.id);
+    console.log(users);
+    return res.json(users);
+  } catch (e: any) {
+    logger.error(e);
+    return res.status(409).send(e.message);
+  }
+}

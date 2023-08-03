@@ -12,3 +12,24 @@ export const loginSchema = object({
 });
 
 export type LoginInput = TypeOf<typeof loginSchema>;
+
+export const updateProfileSchema = object({
+  body: object({
+    phone: string({
+      required_error: "Phone Number is required",
+    }),
+    mothersName: string().optional(),
+    nationality: string({
+      required_error: "Nationality is required",
+    }),
+    stateOfOrigin: string({
+      required_error: "State of Origin is required",
+    }),
+    lga: string({
+      required_error: "LGA is required",
+    }),
+    address: string({
+      required_error: "Address is required",
+    }),
+  }),
+});

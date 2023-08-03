@@ -21,7 +21,7 @@ export interface UserInput {
   type: UserTypeWithAdmin | UserType;
 }
 
-export interface UserDocument extends UserInput,  mongoose.Document {
+export interface UserDocument extends UserInput, mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
   matriculationNumber: string;
@@ -36,6 +36,12 @@ const userSchema = new mongoose.Schema(
     last_name: { type: String, required: true },
     password: { type: String, required: true },
     department: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
+    phone: { type: String, default: "" },
+    mothersName: { type: String, default: "" },
+    nationality: { type: String, default: "" },
+    stateOfOrigin: { type: String, default: "" },
+    lga: { type: String, default: "" },
+    address: { type: String, default: "" },
     role: {
       type: String,
       enum: Object.values(UserRoleWithAdmin),

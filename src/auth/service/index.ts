@@ -1,6 +1,7 @@
 import { FilterQuery } from "mongoose";
 import { omit } from "lodash";
 import UserModel, { UserDocument, UserInput } from "../../user/model";
+import { UpdateUserInput } from "../type/user.type";
 
 export async function createUser(input: UserInput) {
   try {
@@ -83,4 +84,18 @@ export async function getAllUsers(query: FilterQuery<UserDocument>) {
   // return UserModel.findOne(query).lean();
   const users = await UserModel.findOne(query).lean();
   return users;
+}
+
+export async function updateUser(id: string, input: UpdateUserInput) {
+  const user = await UserModel.findByIdAndUpdate(
+    id,
+    { ...input },
+    { new: true }
+  ).lean();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return omit(user, "password");
 }

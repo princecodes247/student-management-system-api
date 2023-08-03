@@ -7,12 +7,18 @@ import {
   loginHandler,
 } from "../controller";
 import { createUserSchema } from "../../user/schema";
-import { loginSchema } from "../schema";
+import { loginSchema, updateProfileSchema } from "../schema";
+import { updateProfileHandler } from "../../profile/controller";
 
 const router: Router = Router();
 
 router.post("/", validateRequest(createUserSchema), createUserHandler);
 router.post("/login", validateRequest(loginSchema), loginHandler);
+router.post(
+  "/update-profile",
+  validateRequest(updateProfileSchema),
+  updateProfileHandler
+);
 router.get("/", getUsersHandler);
 router.get("/:id", getUserHandler);
 
