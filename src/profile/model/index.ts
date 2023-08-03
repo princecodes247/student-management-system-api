@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 import mongoose from "mongoose";
 import { ProfileDocument, ProfileDocumentStatus } from "../type";
 
-const ProfileSchema = new Schema<ProfileDocument>(
+const ProfileSchema = new Schema(
   {
     user_id: { type: Schema.Types.ObjectId, ref: "User" },
     olevel_result: {
@@ -49,4 +49,7 @@ const ProfileSchema = new Schema<ProfileDocument>(
   { timestamps: true }
 );
 
-export const ProfileModel = mongoose.model<ProfileDocument>("Profile", ProfileSchema);
+export const ProfileModel = mongoose.model<ProfileDocument>(
+  "Profile",
+  ProfileSchema
+);

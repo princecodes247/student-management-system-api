@@ -1,5 +1,5 @@
 import { ProfileModel } from "../model";
-import { FilterQuery } from "mongoose";
+import { Condition, FilterQuery, ObjectId } from "mongoose";
 import { IProfile, IProfileInput, ProfileDocumentStatus } from "../type";
 import { omit } from "lodash";
 import { createReadStream } from "fs";
@@ -37,9 +37,9 @@ export const uploadDocumentService = async (input: IProfileInput) => {
     };
     const profile = await ProfileModel.findOneAndUpdate(
       {
-        user_id: input.user_id
+        user_id: input.user_id,
       },
-      newInput,
+      newInput
     );
   } catch (e: any) {
     console.log("error: ", e);
@@ -50,7 +50,7 @@ export const uploadDocumentService = async (input: IProfileInput) => {
 export const createProfile = async (input: string) => {
   try {
     const profile = await ProfileModel.findOne({
-      user_id: input,
+      user_id: input as Condition<ObjectId>,
     });
     if (!profile) {
       const newProfile = await ProfileModel.create(input);
@@ -65,7 +65,7 @@ export const createProfile = async (input: string) => {
     console.log("error: ", e);
     throw e;
   }
-}
+};
 
 /**
  * Find single Profile object from database.
@@ -74,7 +74,7 @@ export const createProfile = async (input: string) => {
  */
 export const findOneProfile = async (id: string) => {
   const data = await ProfileModel.findOne({
-    user_id: id
+    user_id: id as Condition<ObjectId>,
   });
   console.log(data);
   return data;
