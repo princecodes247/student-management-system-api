@@ -26,6 +26,12 @@ export interface UserDocument extends UserInput, mongoose.Document {
   updatedAt: Date;
   password: string;
   matriculationNumber: string;
+  phone: string;
+  mothersName: string;
+  nationality: string;
+  stateOfOrigin: string;
+  lga: string;
+  address: string;
   comparePassword(candidatePassword: string): Promise<Boolean>;
   generateJWT(): Promise<string>;
 }
