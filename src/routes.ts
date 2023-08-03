@@ -9,6 +9,7 @@ import { ResultRoutes } from "./result/route";
 import { DepartmentRoutes } from "./department/route";
 import { FacultyRoutes } from "./faculty/route";
 import { ProfileRoutes } from "./profile/route";
+import { EnrollmentRoutes } from "./enrollment/route";
 
 const router: Router = Router();
 
@@ -17,6 +18,7 @@ router.use("/account", AccountRoutes);
 router.use("/assets", AssetsRoutes);
 router.use("/course", CourseRoutes);
 router.use("/department", DepartmentRoutes);
+router.use("/enrollment", EnrollmentRoutes);
 router.use("/faculty", FacultyRoutes);
 router.use("/profile", ProfileRoutes);
 // router.use("/quotes", QuotesRoutes);

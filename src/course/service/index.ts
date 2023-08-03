@@ -51,6 +51,10 @@ export const findManyCourses = async (query: FilterQuery<ICourse>) => {
   return await CourseModel.find(query);
 };
 
+export const myCourses = async () => {
+  return await CourseModel.find();
+};
+
 /**
  * Update single result in database..
  * @param query FilterQuery<ICourse>

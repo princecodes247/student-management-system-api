@@ -12,6 +12,7 @@ import { createReadStream } from "fs";
 export const uploadDocumentService = async (input: IProfileInput) => {
   // return await ProfileModel.create(input)
   try {
+    console.log("input: ", input);
     const newInput: IProfile = {
       user_id: input.user_id,
       olevel_result: {

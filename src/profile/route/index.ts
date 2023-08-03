@@ -14,7 +14,11 @@ const router: Router = Router();
 
 router.get("/", findManyProfileHandler);
 router.get("/:id", findOneProfileHandler);
-router.post("/", validateRequest(createProfileSchema), uploadDocumentHandler);
+router.post(
+  "/",
+  // validateRequest(createProfileSchema),
+  uploadDocumentHandler
+);
 router.put("/:id", updateProfileHandler);
 router.delete("/:id", deleteProfileHandler);
 

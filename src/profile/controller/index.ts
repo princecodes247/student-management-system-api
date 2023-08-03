@@ -21,6 +21,7 @@ export const uploadDocumentHandler = async (
   res: Response
 ) => {
   try {
+    console.log(req.body);
     return res.json(await uploadDocument(req.body));
   } catch (error: any) {
     return res
@@ -51,10 +52,7 @@ export const findOneProfileHandler = async (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const findManyProfileHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const findManyProfileHandler = async (req: Request, res: Response) => {
   try {
     return res.json(await findManyProfiles(req.query ?? {}));
   } catch (error: any) {
@@ -90,9 +88,7 @@ export const updateProfileHandler = async (req: Request, res: Response) => {
  */
 export const deleteProfileHandler = async (req: Request, res: Response) => {
   try {
-    return res.json(
-      await deleteProfile(req.query ?? { _id: req.params._id })
-    );
+    return res.json(await deleteProfile(req.query ?? { _id: req.params._id }));
   } catch (error: any) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

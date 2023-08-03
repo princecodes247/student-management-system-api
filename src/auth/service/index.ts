@@ -34,7 +34,10 @@ export async function login({
     if (!matriculationNumber) throw new Error("Email is required");
     if (!password) throw new Error("Password is required");
 
-    const user = await UserModel.findOne({ matriculationNumber });
+    const user = await UserModel.findOne({ matriculationNumber }).populate(
+      "department"
+    );
+    console.log("user", user);
     if (!user) throw new Error("Invalid matriculationNumber or password");
 
     const isValid = await user.comparePassword(password);
@@ -43,10 +46,11 @@ export async function login({
     const token = await user.generateJWT();
 
     return {
-      _id: user._id,
+      id: user._id,
       first_name: user.first_name,
       last_name: user.last_name,
-      matriculationNumber: user.matriculationNumber,
+      matriculation_number: user.matriculationNumber,
+      role: user.role,
       token: token,
     };
   } catch (e: any) {
