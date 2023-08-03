@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "start": "ts-node --transpile-only src/app.ts",
     "inspect": "ts-node-dev --inspect --respawn --transpile-only src/app.ts",
     "build": "tsc",
     "module": "node module-generator/index.js"
