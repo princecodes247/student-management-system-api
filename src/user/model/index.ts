@@ -123,6 +123,6 @@ userSchema.methods.generateJWT = async function () {
   );
 };
 
-const UserModel = mongoose.model<UserDocument>("User", userSchema);
+const UserModel = mongoose.model("User", userSchema);
 
 export default UserModel;
