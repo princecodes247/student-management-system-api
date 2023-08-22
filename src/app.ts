@@ -5,6 +5,7 @@ import config from "config";
 import responseTime from "response-time";
 import connect from "./utils/connect";
 import logger from "./utils/logger";
+import upload from "./utils/multer";
 import routes from "./routes";
 import deserializeUser from "./middleware/deserializeUser";
 import { restResponseTimeHistogram, startMetricsServer } from "./utils/metrics";
@@ -32,6 +33,20 @@ app.use(
     }
   })
 );
+
+
+// Define the API route
+app.post('/convert-to-base64', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+
+  const fileBuffer = req.file.buffer;
+  const base64Data = fileBuffer.toString('base64');
+
+  res.json({ base64Data });
+});
+
 
 app.listen(port, async () => {
   logger.info(`App is running at http://localhost:${port}`);
